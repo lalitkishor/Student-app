@@ -62,14 +62,20 @@ class Student extends Component {
     const { student, isLoading } = this.props;
     if (isLoading) {
       return (
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'cetner',
-          height: '100vh'
-        }}>
-          <Loader message="fetching student..." />
-        </div>
+        <>
+          <NavBar
+            setSearchText={this.setSearchText}
+            sortStudentname={this.setToggle}
+          />
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'cetner',
+            height: '100vh'
+          }}>
+            <Loader message="fetching student..." />
+          </div>
+        </>
       )
     }
     return (

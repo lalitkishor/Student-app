@@ -16,7 +16,7 @@ class StudentCard extends PureComponent {
     } = this.props;
 
     return (
-      <div style={{ marginBottom: '20px' }} onClick={this.redirectToStudentDetail}>
+      <div style={{ marginBottom: '20px', cursor: 'pointer' }} onClick={this.redirectToStudentDetail}>
         <Card style={{ width: '18rem' }}>
           {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
           <Card.Body>
