@@ -1,10 +1,21 @@
 import APP_CONSTANT from "../constant/index";
 
-const student = (state = [], action) => {
+
+const defaultStudentState = {
+  isLoading: false,
+  student: null
+}
+const student = (state = defaultStudentState, action) => {
   switch (action.type) {
-    case APP_CONSTANT.STUDENT.GET:
+    case APP_CONSTANT.STUDENT.GET.REQUEST: {
+      return { ...state, isLoading: true }
+    }
+    case APP_CONSTANT.STUDENT.GET.FAILURE: {
+      return { ...state, isLoading: false }
+    }
+    case APP_CONSTANT.STUDENT.GET.SUCCESS:
       const { student } = action;
-      return { ...student }
+      return { ...state, student, isLoading: false }
     default: return state;
   }
 }
