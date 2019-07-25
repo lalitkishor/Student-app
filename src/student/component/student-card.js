@@ -1,7 +1,12 @@
 import React, { PureComponent } from 'react';
+import { withRouter } from 'react-router';
 import Card from 'react-bootstrap/Card';
 
 class StudentCard extends PureComponent {
+  redirectToStudentDetail = () => {
+    const { rollNo } = this.props;
+    this.props.history.push(`./student-info/${rollNo}`)
+  }
   render() {
     const {
       name,
@@ -9,8 +14,9 @@ class StudentCard extends PureComponent {
       studentClass,
       totalMark
     } = this.props;
+
     return (
-      <div style={{ marginBottom: '20px' }}>
+      <div style={{ marginBottom: '20px' }} onClick={this.redirectToStudentDetail}>
         <Card style={{ width: '18rem' }}>
           {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
           <Card.Body>
@@ -27,4 +33,4 @@ class StudentCard extends PureComponent {
     )
   }
 }
-export default StudentCard;
+export default withRouter(StudentCard);
