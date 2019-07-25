@@ -43,14 +43,14 @@ class NavBar extends PureComponent {
   render() {
     return (
       <Navbar bg="dark" expand="lg" sticky="top">
-        <Navbar.Brand href="#home" style={{ color: 'white' }}>Embibe</Navbar.Brand>
+        <Navbar.Brand href="/" style={{ color: 'white' }}>Embibe</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="/" style={{ color: 'white' }}>Home</Nav.Link>
             <Dropdown style={{ marginLeft: '10px' }}>
               <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Sort By Names
+                Sort By Name
               </Dropdown.Toggle>
               <Dropdown.Menu id="stundetNameSort">
                 <Dropdown.Item eventKey="1" onClick={this.setAccending} >Accending</Dropdown.Item>

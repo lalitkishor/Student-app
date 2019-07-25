@@ -98,6 +98,9 @@ class Student extends Component {
     return Object.keys(student).filter((res) => `${student[res].name}`.toLowerCase().indexOf(searchText) >= 0)
   }
 
+
+
+
   render() {
     const { student, isLoading } = this.props;
     if (isLoading) {

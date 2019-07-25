@@ -9,11 +9,13 @@ const APP_CONSTANT = {
       SUCCESS: 'Student.Get.Success'
     },
     UPDATE: {
-      
+
     }
   },
   USER: {
-
+    SET: {
+      AUTH: "User.set.Auth"
+    }
   }
 }
 export default APP_CONSTANT;
