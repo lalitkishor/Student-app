@@ -5,15 +5,15 @@ import { fetchStudent } from "../student-action";
 import StudentCard from "../component/student-card";
 import Loader from "../../common/loader";
 import Container from 'react-bootstrap/Container';
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
 import NavBar from "../component/navbar";
 
 class Student extends Component {
   state = {
     searchText: '',
     isSetAccending: false,
-    isSetDesending: false
+    isSetDesending: false,
+    isSetAccendingMark: false,
+    isSetDesendingMark: false
   }
   componentDidMount() {
     this.props.fetchStudent()
@@ -40,6 +40,39 @@ class Student extends Component {
       }, []);
     return [];
   }
+  getAccendingMark = () => {
+    const { student } = this.props;
+    if (student) return Object.values(student).sort((a, b) => {
+      if (a.totalMark < b.totalMark) {
+        return 1
+      }
+      if (a.totalMark > b.totalMark) {
+        return -1
+      }
+      return 0
+    }).reduce((a, b) => {
+      a.push(b.rollNo)
+      return a
+    }, []);
+    return [];
+  }
+  getDecendingMark = () => {
+    const { student } = this.props;
+    if (student) return Object.values(student).sort((a, b) => {
+      if (a.totalMark > b.totalMark) {
+        return 1
+      }
+      if (a.totalMark < b.totalMark) {
+        return -1
+      }
+      return 0
+    }).reduce((a, b) => {
+      a.push(b.rollNo)
+      return a
+    }, []);
+    return [];
+  }
+
   setToggle = (obj) => {
     this.setState({
       ... this.state,
@@ -48,7 +81,7 @@ class Student extends Component {
   }
   middleWare = () => {
     const { student } = this.props;
-    const { searchText, isSetAccending, isSetDesending } = this.state;
+    const { searchText, isSetAccending, isSetDesending, isSetAccendingMark, isSetDesendingMark } = this.state;
     if (isSetAccending) {
       return this.getAccendingStudent()
 
@@ -56,8 +89,15 @@ class Student extends Component {
     if (isSetDesending) {
       return this.getDesendingStudent()
     }
+    if (isSetAccendingMark) {
+      return this.getAccendingMark()
+    }
+    if (isSetDesendingMark) {
+      return this.getDecendingMark()
+    }
     return Object.keys(student).filter((res) => `${student[res].name}`.toLowerCase().indexOf(searchText) >= 0)
   }
+
   render() {
     const { student, isLoading } = this.props;
     if (isLoading) {

@@ -6,8 +6,12 @@ class Search extends PureComponent {
     }
     render() {
         return (
-            <div>
-                <input type='text' placeholder="search student..." onChange={this.setSearchvalue} />
+            <div style={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center'
+            }}>
+                <input style={{ width: '80%', height: '40px' }} type='text' placeholder="search student..." onChange={this.setSearchvalue} />
             </div>
         )
     }
